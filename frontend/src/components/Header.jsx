@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Tooltip component
   const Tooltip = ({ text }) => (
     <span className="absolute bottom-[-30px] left-1/2 -translate-x-1/2 
                      bg-gray-800 text-white text-xs px-2 py-1 rounded 
@@ -35,29 +34,30 @@ const Header = () => {
           </button>
         </div>
 
-         {/* Icons with tooltips */}
+        {/* Icons */}
         <div className="flex items-center space-x-4">
-          <div className="relative group cursor-pointer">
+          {/* ✅ PROFILE ICON with Link to /profile */}
+          <Link to="/profile" className="relative group cursor-pointer">
             <FaUserCircle className="text-gray-600 text-2xl hover:text-sky-600" />
             <Tooltip text="Profile" />
-          </div>
+          </Link>
+
           <div className="relative group cursor-pointer">
             <FaUserTie className="text-gray-600 text-2xl hover:text-sky-600" />
             <Tooltip text="Seller/Admin" />
           </div>
-          <div className="relative group cursor-pointer">
-            <Link to="/cart">
-              <FaShoppingCart className="text-gray-600 text-2xl hover:text-sky-600" />
-              <Tooltip text="Cart" />
-            </Link>
-          </div>
+
+          <Link to="/cart" className="relative group cursor-pointer">
+            <FaShoppingCart className="text-gray-600 text-2xl hover:text-sky-600" />
+            <Tooltip text="Cart" />
+          </Link>
         </div>
       </header>
 
       {/* Mobile Header */}
       <header className="bg-white shadow-md p-4 flex flex-col md:hidden fixed top-0 w-full z-50">
         <div className="flex justify-between items-center">
-          {/* Hamburger Menu */}
+          {/* Hamburger */}
           <button
             className="text-2xl text-gray-600 cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -69,7 +69,7 @@ const Header = () => {
           <div className="text-xl font-bold text-sky-600 cursor-pointer">ShopEase</div>
         </div>
 
-        {/* Search Bar below site name */}
+        {/* Search Bar */}
         <div className="mt-2 flex w-full">
           <input
             type="text"
@@ -93,17 +93,15 @@ const Header = () => {
         </nav>
       )}
 
-      {/* Mobile Bottom Icons */}
+      {/* ✅ Mobile Bottom Icons (updated with Link) */}
       <div className="fixed bottom-0 left-0 w-full bg-white shadow-inner flex justify-around p-2 md:hidden z-50">
-        <button className="text-gray-600 text-2xl hover:text-sky-600 cursor-pointer">
+        <Link to="/profile" className="text-gray-600 text-2xl hover:text-sky-600">
           <FaUserCircle />
-        </button>
-        <button className="text-gray-600 text-2xl hover:text-sky-600 cursor-pointer">
-          <FaUserTie />
-        </button>
-        <button className="text-gray-600 text-2xl hover:text-sky-600 cursor-pointer">
+        </Link>
+        <FaUserTie className="text-gray-600 text-2xl hover:text-sky-600" />
+        <Link to="/cart" className="text-gray-600 text-2xl hover:text-sky-600">
           <FaShoppingCart />
-        </button>
+        </Link>
       </div>
     </>
   );
